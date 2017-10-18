@@ -75,7 +75,7 @@ public class YCVideoPlayerManager {
             mMediaPlayer.setScreenOnWhilePlaying(true);
             mMediaPlayer.prepareAsync();
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -106,5 +106,16 @@ public class YCVideoPlayerManager {
     public void onCompletion() {
         mMediaPlayer.reset();
         mMediaPlayer.release();
+    }
+
+    /**
+     * 资源释放
+     */
+    public void release() {
+        if (mMediaPlayer != null) {
+            mMediaPlayer.release();
+            mMediaPlayer.stop();
+            mMediaPlayer.reset();
+        }
     }
 }
